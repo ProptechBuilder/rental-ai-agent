@@ -17,7 +17,7 @@ const PROPERTY_DETAILS = {
   description:
     'Private bathrooms, furnished common spaces, modern amenities like AC, mini-fridge, microwave. Prime location near PLU, QFC, Starbucks, parks, trails, and JBLM. Rent includes utilities.',
   location: 'Tacoma, WA',
-  images: ['path_to_image1.jpg', 'path_to_image2.jpg'],
+  images: ['./tests/image/photo.jpg'],
   numberOfResidents: '1',
 };
 
@@ -126,12 +126,13 @@ async function createMarketplaceListing(page) {
   }
 
   // Upload images
+  const addPhotoButton = await page.waitForSelector('xpath=//span[text()="Add photos"]');
   for (const imagePath of PROPERTY_DETAILS.images) {
     const [fileChooser] = await Promise.all([
       page.waitForEvent('filechooser'),
-      page.click('div[aria-label="Add Photos"]'),
+      addPhotoButton.click(),
     ]);
-    await fileChooser.setFiles(imagePath);
+    await fileChooser.setFiles(PROPERTY_DETAILS.images);
     await page.waitForTimeout(Math.floor(Math.random() * 2000 + 1000));
   }
 
@@ -140,6 +141,7 @@ async function createMarketplaceListing(page) {
   await page.click('div[aria-label="Next"]');
   await page.waitForTimeout(Math.floor(Math.random() * 2000 + 1000));
   await page.waitForSelector('div[aria-label="Publish"]');
-  await page.click('div[aria-label="Publish"]');
-  await page.waitForTimeout(Math.floor(Math.random() * 2000 + 1000));
+  // TODO: not publishing the listing for now
+  //   await page.click('div[aria-label="Publish"]');
+//   await page.waitForTimeout(Math.floor(Math.random() * 2000 + 1000));
 }
