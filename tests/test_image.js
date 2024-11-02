@@ -17,7 +17,7 @@ const PROPERTY_DETAILS = {
   description:
     'Private bathrooms, furnished common spaces, modern amenities like AC, mini-fridge, microwave. Prime location near PLU, QFC, Starbucks, parks, trails, and JBLM. Rent includes utilities.',
   location: 'Tacoma, WA',
-  images: ['path_to_image1.jpg', 'path_to_image2.jpg'],
+  images: ['./tests/image/photo.jpg'],
   numberOfResidents: '1',
 };
 
@@ -47,18 +47,18 @@ async function loginToFacebook(page) {
 }
 
 async function createMarketplaceListing(page) {
-  // Navigate to Facebook Marketplace
+  // Navigate to Facebook Marketplace's rental creation page
   await page.goto('https://www.facebook.com/marketplace/create/rental');
   await page.waitForTimeout(Math.floor(Math.random() * 2000 + 1000));
 
+  // Click on "Add photos" button
+  const addPhotoButton = await page.waitForSelector('xpath=//span[text()="Add photos"]');
+  const [fileChooser] = await Promise.all([
+    page.waitForEvent('filechooser'), // Wait for the file chooser event
+    addPhotoButton.click(), // Click the button to trigger file chooser
+  ]);
 
   // Upload images
-  const addPhotoButton = await page.waitForSelector('div:has-text("Add photos")');
-  await addPhotoButton.click();
-  const [fileChooser] = await Promise.all([
-    page.waitForEvent('filechooser'),
-    addPhotoButton.click(),
-  ]);
   await fileChooser.setFiles(PROPERTY_DETAILS.images);
   await page.waitForTimeout(Math.floor(Math.random() * 2000 + 1000));
 

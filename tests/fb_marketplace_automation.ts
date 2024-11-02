@@ -11,7 +11,7 @@ const PROPERTY_DETAILS = {
   description:
     'Private bathrooms, furnished common spaces, modern amenities like AC, mini-fridge, microwave. Prime location near PLU, QFC, Starbucks, parks, trails, and JBLM. Rent includes utilities.',
   location: 'Tacoma, WA',
-  images: ['path_to_image1.jpg', 'path_to_image2.jpg'],
+  images: ['image/photo.jpg'],
 };
 
 (async () => {
