@@ -1,7 +1,9 @@
 # Rental listing AI agent
 
-## Playwright Quickstart
-https://playwright.dev/docs/intro
+## Prerequisite 
+First, install playwright: npm init playwright@latest
+
+Doc: https://playwright.dev/docs/intro
 
 ## FB listing automation
 Run node fb_marketplace_automation.js in the tests folder. It will open a new browser and fill in the information. 
