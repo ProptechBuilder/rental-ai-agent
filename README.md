@@ -12,3 +12,19 @@ Current blocker: upload image in creating the listing - being worked on in test_
 
 I'm using test_image.js to try to upload the listing photos, but it is not working. Once we get this figured out, we can autoamte listing creation.
 main
+
+# Call Rental Creation API
+
+curl -X POST http://localhost:8000/generate_rental_ad \
+     -H "Content-Type: application/json" \
+     -d '{
+           "images": [
+             "https://storage.googleapis.com/gs_bucket_20/902-904-Tacoma-13.jpg",
+             "https://storage.googleapis.com/gs_bucket_20/902-904-Tacoma-21.jpg"
+           ],
+           "contact_name": "Yolanda",
+           "contact_email": "yolanda@rentaigent.com",
+           "agency_name": "AI Rental Agency",
+           "location": "Tacoma, Washington",
+           "security_deposit": "two months"
+         }'

@@ -1,13 +1,12 @@
 import os
 import vertexai
-import IPython.display
 from vertexai.generative_models import GenerativeModel, Part
 
 # Use the environment variable if the user doesn't provide Project ID.
-PROJECT_ID = "re-agent-440517"
-# PROJECT_ID = "vivid-argon-440517-e8"
-# if not PROJECT_ID or PROJECT_ID == "[your-project-id]":
-#     PROJECT_ID = str(os.environ.get("GOOGLE_CLOUD_PROJECT"))
+GOOGLE_APPLICATION_CREDENTIALS="gcp_service_key.json"
+PROJECT_ID = "vivid-argon-440517-e8"
+if not PROJECT_ID or PROJECT_ID == "[your-project-id]":
+    PROJECT_ID = str(os.environ.get("GOOGLE_CLOUD_PROJECT"))
 
 LOCATION = os.environ.get("GOOGLE_CLOUD_REGION", "us-central1")
 
